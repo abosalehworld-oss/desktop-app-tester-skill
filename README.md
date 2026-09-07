@@ -20,7 +20,8 @@ When installed, your AI agent becomes a **professional desktop app QA engineer**
 - ✅ **Final Delivery + Fresh-Eyes Re-Analysis** — Executive summary, cross-reference matrix, mandatory second pass
 - 🔧 **Structured Remediation (Phase 11)** — Sprint-based fixes with Hacker Mindset R6 post-fix verification
 - 📦 **Distribution & Commercial Readiness (Phase 12)** — Installer, code signing, auto-update, licensing, store submission
-- 🛡️ **Pre-Delivery Sentry Validation (Phase 13)** — Sentry setup per framework, real testing, crash reporting, deployment verdict
+- 🔴 **Automated Offensive Testing (Phase 13)** — AI runs real security tools (Sigcheck, Trivy, PE analysis) with mandatory database freshness and anti-cheating enforcement
+- 🛡️ **Pre-Delivery Sentry Validation (Phase 14)** — Sentry setup per framework, real testing, crash reporting, deployment verdict
 
 ---
 
@@ -57,15 +58,15 @@ npx skills add https://github.com/abosalehworld-oss/desktop-app-tester-skill -g 
 
 ---
 
-## 🛡️ Anti-Laziness Enforcement System
+## 🛡️ Anti-Laziness Enforcement System (10 Layers)
 
 This skill is engineered to **force thorough review** even from AI agents that tend to skip steps.
 
-### 1. Proof-of-Work Citations (91 Minimum)
+### 1. Proof-of-Work Citations (116 Minimum)
 Every finding MUST include exact file path, line numbers, and copied code snippet.
 
-### 2. Mandatory Phase Gates (13 Gates)
-Each of the 13 phases has a structured checklist that must be completed with evidence before the AI can proceed.
+### 2. Mandatory Phase Gates (14 Gates)
+Each of the 14 phases has a structured checklist that must be completed with evidence before the AI can proceed.
 
 ### 3. Mandatory STOP Points
 After each phase, the AI MUST output a structured report and wait for acknowledgment.
@@ -78,6 +79,18 @@ After all phases, the AI performs a second independent pass — proven to catch 
 
 ### 6. Hacker Mindset R6
 After every fix, the AI verifies from an attacker's perspective that no new vulnerabilities were introduced.
+
+### 7. Anti-Premature-Celebration
+AI is blocked from declaring "done" after remediation — offensive testing and Sentry phases still remain.
+
+### 8. 🆕 Mandatory `run_command` Proof (Phase 13)
+Every security tool execution MUST be via real terminal commands — fabricating tool output = cheating.
+
+### 9. 🆕 Maximum 2 MANUAL_CHECK (Phase 13)
+AI cannot claim all tools are unavailable — at most 2 checks can be manual.
+
+### 10. 🆕 Mandatory Database Freshness (Phase 13)
+AI MUST update vulnerability databases before scanning + web search for latest tool versions.
 
 ---
 
@@ -98,7 +111,8 @@ desktop-app-tester-skill/
 ├── 10-final-delivery-checklist.md        ← Phase 10: Summary + Fresh-Eyes
 ├── 11-remediation-execution.md           ← Phase 11: Sprint fixes + R6 verification
 ├── 12-distribution-commercial-readiness.md ← Phase 12: Installer, signing, update
-├── 13-pre-delivery-sentry-validation.md  ← Phase 13: Sentry + real testing
+├── 13-automated-offensive-testing.md  ← Phase 13: Sigcheck, DLL test, Trivy, PE analysis
+├── 14-pre-delivery-sentry-validation.md  ← Phase 14: Sentry + real testing
 └── ref-common-bugs-database.md           ← 150+ desktop bug patterns reference
 ```
 

@@ -144,6 +144,8 @@ BEFORE releasing to users, verify:
 ### Fresh-Eyes Execution:
 ```
 1. CLEAR your mental model of the codebase
+   ⚠️ TOOL CALL REQUIREMENT: You MUST call view_file on each file below.
+      Writing findings from memory is CHEATING and invalidates the review.
 2. RE-READ every file that handles:
    ☑ File I/O and path manipulation
    ☑ Process/command execution
@@ -163,6 +165,7 @@ BEFORE releasing to users, verify:
 
 | Category | Files Re-Examined | New Findings |
 |----------|------------------|-------------|
+| **Tool Calls Made** | **[count] view_file calls** | **REQUIRED > 0** |
 | File I/O Security | [count] | [count] |
 | Process Execution | [count] | [count] |
 | IPC Channels | [count] | [count] |
@@ -187,6 +190,7 @@ PHASE 10 GATE CHECKLIST:
   □ [F5] Priority Matrix created
   □ [F6] Pre-Release Checklist completed
   □ Fresh-Eyes Re-Analysis executed (Rule 10)
+  □ Fresh-Eyes includes view_file tool calls as proof of re-reading
   □ Fresh-Eyes results documented
   □ Health score recalculated if new findings
   □ Release recommendation finalized

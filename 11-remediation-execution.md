@@ -177,3 +177,24 @@ After ALL sprints are completed:
 > ⚠️ THE CYCLE DOES NOT END UNTIL THE RE-ANALYSIS IS 100% CLEAN.
 > Analyze (1-10) → Fix (11) → Re-Analyze (1-10) → ✅ DONE.
 ```
+
+---
+
+## ⛔ ANTI-PREMATURE-CELEBRATION RULE
+
+> **Phase 11 is the REMEDIATION phase ONLY — NOT the final phase.**
+> There are still remaining phases after this one (Phase 12: Distribution & Commercial Readiness, Phase 13: Pre-Delivery Sentry Validation).
+> **Do NOT declare the project "done", "production-ready", or "ready for deployment" after completing Phase 11.**
+> You MUST continue to the next phase and await user confirmation before proceeding.
+
+---
+
+## 💡 OPTIONAL: Run Actual Analysis Tools
+
+> If execution tools are available in your environment, prefer running actual commands over mental simulation:
+> - `dotnet build` / `dotnet test` (.NET/WPF)
+> - `npm run build` / `npm audit` (Electron)
+> - `cargo build` / `cargo clippy` (Tauri/Rust)
+> - `pyinstaller --onefile` (Python/PyQt)
+>
+> If these tools are NOT available, document this limitation in the sprint report.

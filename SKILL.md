@@ -2,7 +2,7 @@
 name: desktop-app-tester-comprehensive
 description: >
   Comprehensive desktop application testing skill that transforms any AI agent into a
-  professional desktop app QA tester. Covers 13 phases: architecture review, UI/UX testing,
+  professional desktop app QA tester. Covers 14 phases: architecture review, UI/UX testing,
   logic & functional testing, security auditing (OWASP Desktop Top 10 with MANDATORY
   current-year web search), performance optimization, platform compatibility (Windows/macOS/Linux),
   API/network resilience, state & data management, error/crash prevention, final delivery
@@ -42,7 +42,7 @@ Every single finding MUST include:
 ✅ REQUIRED: "In `src/services/FileManager.cs:45-52`, the file is opened using `File.ReadAllText(userPath)` without sanitizing `userPath`. An attacker can use path traversal (`../../etc/passwd` or `..\..\Windows\System32\config\SAM`) to read arbitrary system files. Fix: Use `Path.GetFullPath()` and validate the result is within the allowed directory."
 
 ### Rule 2: MANDATORY PHASE GATES
-This review has **13 phases**. Each phase has a **GATE** — a mandatory checklist that must be
+This review has **14 phases**. Each phase has a **GATE** — a mandatory checklist that must be
 completed with evidence BEFORE proceeding to the next phase.
 
 ```
@@ -292,7 +292,8 @@ Citations must represent GENUINE analysis, not padding to meet minimums:
 | 10 | Final Delivery + Fresh-Eyes | `10-final-delivery-checklist.md` | Complete checklist, priority matrix, **FRESH-EYES re-analysis**, sign-off |
 | 11 | Structured Remediation *(optional)* | `11-remediation-execution.md` | Sprint-based fixes with verification gates |
 | 12 | Distribution & Commercial Readiness | `12-distribution-commercial-readiness.md` | Installers, code signing, auto-update, licensing, store policies |
-| 13 | Pre-Delivery Sentry Validation | `13-pre-delivery-sentry-validation.md` | Sentry setup, real-machine testing, error tracking, final sign-off with user |
+| 13 | Automated Offensive Security Testing | `13-automated-offensive-testing.md` | Dynamic testing, binary analysis, vulnerability scanning |
+| 14 | Pre-Delivery Sentry Validation | `14-pre-delivery-sentry-validation.md` | Sentry setup, real-machine testing, error tracking, final sign-off with user |
 
 ---
 
@@ -354,9 +355,9 @@ After fixes are applied:
 - Produce distribution readiness matrix with YES/NO verdict
 - If issues found → go back to Phase 11 to fix → then re-check Phase 12
 
-### Step 13: Pre-Delivery Sentry Validation (FINAL STEP)
-After Phase 12 passes:
-- Read `13-pre-delivery-sentry-validation.md`
+### Step 14: Pre-Delivery Sentry Validation (FINAL STEP)
+After Phase 13 passes:
+- Read `14-pre-delivery-sentry-validation.md`
 - Guide the user step-by-step through Sentry setup (treat them as non-technical)
 - Walk through real-machine testing scenarios
 - Ask the user to share Sentry results → analyze them
@@ -369,9 +370,9 @@ Analyze (1-10 + Fresh-Eyes) → Report → Fix (11) → Re-Analyze (1-10) → Di
     ↓                                                                       ↓
     ↓                                                    Issues? → Fix (11) → Re-Check (12)
     ↓                                                                       ↓
-    ↓                                                    Clean? → Sentry Validation (13)
+    ↓                                                    Clean? → Sentry Validation (14)
     ↓                                                                       ↓
-    ↓                                                    Sentry Issues? → Fix (11) → Re-Check (12+13)
+    ↓                                                    Sentry Issues? → Fix (11) → Re-Check (12+13+14)
     ↓                                                                       ↓
     ↓                                                    All Clean? → ✅ READY TO DISTRIBUTE
     ↓
@@ -380,7 +381,7 @@ The cycle repeats until:
   ✅ Zero 🟠 High findings
   ✅ Fresh-Eyes re-analysis found ZERO new Critical/High issues
   ✅ Phase 12 verdict = 🟢 READY
-  ✅ Phase 13 Sentry validation = 🟢 CLEAN
+  ✅ Phase 14 Sentry validation = 🟢 CLEAN
   ✅ User confirms final sign-off
 ```
 
@@ -402,7 +403,8 @@ When executing each phase, you MUST read the corresponding file for detailed ins
 - Phase 10: Read `10-final-delivery-checklist.md` in this skill folder
 - Phase 11 *(optional)*: Read `11-remediation-execution.md` in this skill folder
 - Phase 12: Read `12-distribution-commercial-readiness.md` in this skill folder
-- Phase 13: Read `13-pre-delivery-sentry-validation.md` in this skill folder
+- Phase 13: Read `13-automated-offensive-testing.md` in this skill folder
+- Phase 14: Read `14-pre-delivery-sentry-validation.md` in this skill folder
 
 Additionally, refer to `ref-common-bugs-database.md` for a database of 200+ common
 desktop app bugs categorized by type, framework, and severity.
@@ -426,6 +428,7 @@ not been thorough enough:
 - Phase 7 (API/Network): Minimum 10 citations
 - Phase 8 (State): Minimum 8 citations
 - Phase 9 (Error Handling): Minimum 10 citations
+- Phase 13 (Automated Offensive Testing): Minimum 25 citations
 
 These are MINIMUM citations. Good reviews typically produce 2-3x these numbers.
 Citations can be findings OR explicit "this code is correct because..." confirmations.

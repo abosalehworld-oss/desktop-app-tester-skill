@@ -2,6 +2,22 @@
 
 All notable changes to the Desktop App Tester Skill are documented here.
 
+## [1.2.0] - 2026-09-08
+
+### Added
+- **Phase 13: Automated Offensive Security Testing** (`13-automated-offensive-testing.md`)
+  - Code signing verification (Sigcheck/codesign)
+  - DLL hijacking and library injection testing
+  - Dependency vulnerability scanning (Trivy/OWASP Dependency-Check)
+  - Binary security analysis (ASLR, DEP, CFG)
+  - Sensitive data exposure testing
+  - Auto-update security verification
+  - 25 minimum citations from real tool outputs
+  - Tool unavailability protocol with manual fallback
+- Sentry validation renumbered to Phase 14
+- Total minimum citations raised from 91 to 116
+- Total phases raised from 13 to 14
+
 ## [1.0.0] - 2026-09-06
 
 ### Added

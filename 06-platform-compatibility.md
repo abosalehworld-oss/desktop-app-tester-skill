@@ -44,7 +44,7 @@ WHAT TO CHECK:
 COMMON BUGS:
   🐛 App data stored in app directory → fails without admin on Windows
   🐛 File created with Linux permissions on Windows → ignored
-  🐛 Path exceeds 260 chars on Windows → operation fails silently
+  🐛 Path exceeds 260 chars on Windows → operation fails silently (unless long-path aware manifest + OS setting)
   🐛 Filename contains : or * → fails on Windows
   🐛 Hidden files (. prefix) behavior differs between OS
 
@@ -149,6 +149,7 @@ PHASE 6 GATE CHECKLIST:
   □ [C4] System integration verified
   □ [C5] Installation and uninstallation reviewed
   □ [C6] Locale and internationalization checked
-  □ Minimum 8 code citations provided
+  □ Coverage target: 8 code citations met — OR Shortfall Protocol applied (Phase 0 §5), never padded
   □ Files examined list produced
+  □ 🔒 Integrity Self-Check printed (Phase 0 §14) — every cited file:line read in THIS phase
 ```

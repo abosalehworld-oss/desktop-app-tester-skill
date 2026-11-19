@@ -56,6 +56,8 @@ WHAT TO CHECK:
   ❑ Is the installer itself signed?
   ❑ Is the code signing certificate valid (not expired)?
   ❑ Is timestamp signing used? (signature valid after cert expires)
+  ❑ Is the signing key on an HSM / hardware token / cloud signing service (required for publicly trusted code-signing certs)?
+  ❑ Certificate validity & renewal plan (CA/B Forum shortened max validity — VERIFY current limit in ref-freshness-registry.md)
 
 RED FLAGS:
   🔴 Unsigned executable → Windows SmartScreen blocks it
@@ -174,7 +176,7 @@ MICROSOFT STORE:
   ❑ MSIX packaging used?
   ❑ App meets content policy?
   ❑ Privacy policy URL provided?
-  ❑ App tested on Windows 10 and 11?
+  ❑ App tested on Windows 11 (Windows 10 reached end of support 2025-10-14 — test it only if the user still targets it)?
 
 MAC APP STORE:
   ❑ App Sandbox enabled?
@@ -206,6 +208,7 @@ PHASE 12 GATE CHECKLIST:
   □ [R8] Platform store requirements checked (if applicable)
   □ Web search results included with URLs
   □ Files examined list produced
+  □ 🔒 Integrity Self-Check printed (Phase 0 §14) — every cited file:line read in THIS phase
 ```
 
 ### Distribution Readiness Matrix:

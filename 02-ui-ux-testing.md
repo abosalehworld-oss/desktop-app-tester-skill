@@ -201,8 +201,9 @@ PHASE 2 GATE CHECKLIST:
   □ [U6] Menus, toolbars, and status bars checked
   □ [U7] Drag & drop and file interaction tested
   □ [U8] Notifications and user feedback verified
-  □ Minimum 12 code citations provided
+  □ Coverage target: 12 code citations met — OR Shortfall Protocol applied (Phase 0 §5), never padded
   □ Files examined list produced
+  □ 🔒 Integrity Self-Check printed (Phase 0 §14) — every cited file:line read in THIS phase
 ```
 
 ### Gate Report Format:

@@ -188,6 +188,7 @@ PHASE 9 GATE CHECKLIST:
   □ [E6] User-facing error messages reviewed
   □ [E7] Graceful degradation patterns checked
   □ [E8] Auto-save and recovery verified
-  □ Minimum 10 code citations provided
+  □ Coverage target: 10 code citations met — OR Shortfall Protocol applied (Phase 0 §5), never padded
   □ Files examined list produced
+  □ 🔒 Integrity Self-Check printed (Phase 0 §14) — every cited file:line read in THIS phase
 ```

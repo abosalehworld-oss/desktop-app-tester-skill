@@ -149,6 +149,7 @@ PHASE 5 GATE CHECKLIST:
   □ [P4] Disk I/O performance assessed
   □ [P5] UI rendering performance verified
   □ [P6] Network performance checked
-  □ Minimum 8 code citations provided
+  □ Coverage target: 8 code citations met — OR Shortfall Protocol applied (Phase 0 §5), never padded
   □ Files examined list produced
+  □ 🔒 Integrity Self-Check printed (Phase 0 §14) — every cited file:line read in THIS phase
 ```

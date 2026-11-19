@@ -41,8 +41,8 @@ Search 4: "desktop application security best practices <YEAR>"
 
 ## ⚠️ SECURITY IS NON-NEGOTIABLE
 
-> Every security finding in this phase is automatically classified as 🔴 CRITICAL or 🟠 HIGH.
-> There are NO low-severity security issues. If it's a security concern, it matters.
+> Security findings are rated by real impact × exploitability × exposure (Phase 0 §10).
+> Do NOT auto-inflate: a hardening gap is 🟡/🔵; a reachable exploit path is 🟠/🔴. State the precondition for every 🔴/🟠.
 
 ---
 
@@ -118,7 +118,8 @@ WHAT TO CHECK:
   ❑ Are IPC endpoints restricted to authorized processes?
   ❑ Electron: Is contextBridge used instead of nodeIntegration?
   ❑ Electron: Are IPC messages validated in main process?
-  ❑ Tauri: Are commands properly exposed with minimal scope?
+  ❑ Tauri v2: Are capabilities/permissions (src-tauri/capabilities/*.json) least-privilege? Is the scope of fs/shell/http plugins restricted?
+  ❑ Electron: contextIsolation=true, sandbox=true, nodeIntegration=false, webSecurity=true; IPC handlers validate sender (event.senderFrame) and arguments
 
 COMMON VULNERABILITIES:
   🔴 Electron: nodeIntegration=true → renderer can execute system commands
@@ -279,8 +280,9 @@ PHASE 4 GATE CHECKLIST:
   □ [S10] Update and code integrity verified
   □ Web search results included with URLs
   □ Current-year attack vectors checked
-  □ Minimum 15 code citations provided
+  □ Coverage target: 15 code citations met — OR Shortfall Protocol applied (Phase 0 §5), never padded
   □ Files examined list produced
+  □ 🔒 Integrity Self-Check printed (Phase 0 §14) — every cited file:line read in THIS phase
 ```
 
 ### ⛔ STOP POINT — SECURITY IS CRITICAL

@@ -141,6 +141,7 @@ PHASE 7 GATE CHECKLIST:
   □ [N4] WebSocket/real-time connections tested
   □ [N5] Download/upload handling verified
   □ [N6] Proxy and corporate network support checked
-  □ Minimum 10 code citations provided
+  □ Coverage target: 10 code citations met — OR Shortfall Protocol applied (Phase 0 §5), never padded
   □ Files examined list produced
+  □ 🔒 Integrity Self-Check printed (Phase 0 §14) — every cited file:line read in THIS phase
 ```

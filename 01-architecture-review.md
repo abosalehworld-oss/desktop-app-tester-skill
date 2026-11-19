@@ -259,8 +259,9 @@ PHASE 1 GATE CHECKLIST:
   □ Project Structure Map produced
   □ Dependency Audit completed
   □ Entry Point Analysis completed
-  □ Minimum 8 code citations provided
+  □ Coverage target: 8 code citations met — OR Shortfall Protocol applied (Phase 0 §5), never padded
   □ Files examined list produced
+  □ 🔒 Integrity Self-Check printed (Phase 0 §14) — every cited file:line read in THIS phase
 ```
 
 ### Gate Report Format:

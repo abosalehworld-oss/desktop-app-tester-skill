@@ -7,11 +7,30 @@
 
 ---
 
+## ⛔ GATE 0 OF THIS PHASE — RULES OF ENGAGEMENT (BEFORE ANY ACTIVE COMMAND)
+
+> This phase performs ACTIVE testing. Before the first scanner/fuzzer/attack command you MUST:
+> 1. Print the **Rules of Engagement** block from `00-agent-integrity-protocol.md` §6 and have the USER fill it.
+> 2. Confirm the environment. Default = **local or staging**. Production active scans, load tests,
+>    brute force, injection tools at elevated risk levels → a SEPARATE explicit "yes" naming the command.
+> 3. Scope = only the targets the user listed. Never scan CDNs, payment/OAuth providers or other third parties.
+> 4. Never upload the user's code, binaries or data to third-party online scanners without explicit consent naming the service.
+> 5. Ask before installing tools globally; prefer official container images or project-local installs (Phase 0 §8).
+>
+> **Execution mode B/C (no shell):** do not pretend. Give the user the exact commands, mark each check
+> `USER-RUN (pending)`, wait for the pasted output, then analyze it. This is a valid, honest completion path.
+>
+> **No permission → no active testing.** Perform the static/local-only checks of this phase and record
+> the rest as `NOT RUN — no authorization` in the gate report (this is not a failure of yours).
+
+---
+
 ## ⚠️ IMPORTANT: This Phase is NON-NEGOTIABLE
 
 > This phase uses **real security tools** that perform **actual attacks** against your app binary.
 > It is NOT static analysis — it is dynamic offensive testing.
-> **Do NOT skip this phase.** Do NOT claim "tools are unavailable" without attempting installation first.
+> **Do NOT skip this phase silently.** Offer it, obtain the Rules of Engagement, then run it inside scope.
+> Do NOT claim "tools are unavailable" without real attempts (mode A) — or, in mode B/C, hand the user the commands.
 
 ---
 
@@ -23,11 +42,12 @@
 > **Writing fake tool output = CHEATING.** If you cannot run the command, mark as MANUAL_CHECK.
 > The user can verify by checking the tool call history in the conversation.
 
-### Rule OT-B: MAXIMUM 2 MANUAL_CHECK ALLOWED
-> You may mark **at most 2 checks** as MANUAL_CHECK due to tool unavailability.
-> If 3 or more tools fail to install, you MUST troubleshoot or try alternative installation
-> methods (pip, npm, brew, choco, scoop, docker, direct download).
-> **Claiming all tools are unavailable = PHASE INVALID. Start over.**
+### Rule OT-B: HONEST TOOL COVERAGE (replaces "maximum 2 MANUAL_CHECK")
+> In execution mode A (you have a shell), try at least one alternative install path (package manager,
+> official container, official release binary) before marking a tool unavailable, and show the real errors.
+> If more than 2 tools stay unavailable, report it plainly and give the user the commands to run themselves.
+> In mode B/C, every tool check is `USER-RUN (pending)` until the user pastes real output.
+> **Never mark PASS for a tool that did not run. Never write tool output you did not receive.**
 
 ### Rule OT-C: HACKER MINDSET R6 ON ALL FIXES
 > If you fix any finding in this phase, you MUST apply Rule R6 (Hacker Mindset Verification):
@@ -45,7 +65,7 @@
 > # OWASP Dependency-Check DB
 > dependency-check --updateonly
 > ```
-> You MUST also run a **web search** for "latest [tool-name] version [current-year]" to verify
+> You MUST also check the tool's official release page / `--version` (and `ref-freshness-registry.md`) to verify
 > you are using the most current version. Scanning with outdated databases = scanning blind.
 > **If the database update fails, document the error and mark the check as PARTIAL.**
 
@@ -120,8 +140,9 @@ Before running any tests, install the required tools:
 # Sigcheck - Microsoft Sysinternals (code signing verification)
 Invoke-WebRequest -Uri "https://live.sysinternals.com/sigcheck.exe" -OutFile sigcheck.exe
 
-# OWASP Dependency-Check
-Invoke-WebRequest -Uri "https://github.com/jeremylong/DependencyCheck/releases/latest" -OutFile dependency-check.zip
+# OWASP Dependency-Check — download the release ZIP manually from the official releases page
+# https://github.com/jeremylong/DependencyCheck/releases  (the /latest URL is an HTML page, not a ZIP)
+# Ask the user before downloading/executing binaries (Phase 0 §8)
 
 # PE-bear / PE-sieve (binary analysis)
 # Download from: https://github.com/hasherezade/pe-bear/releases
@@ -166,14 +187,17 @@ Commands:
   sigcheck.exe -e -u -s "C:\path\to\app\directory"
   # macOS
   codesign --verify --deep --strict /path/to/app.app
-  spctl --assess --type exec /path/to/app.app
+  spctl --assess --type exec -vv /path/to/app.app
+  codesign -dv --verbose=4 /path/to/app.app   # check "flags=0x10000(runtime)" = Hardened Runtime
+  xcrun stapler validate /path/to/app.app      # notarization ticket stapled?
 Analyze:
   - Unsigned executables or DLLs
   - Expired certificates
   - Self-signed vs CA-signed
   - Timestamp presence (for long-term validity)
   - EV certificate vs standard
-Minimum citations: 5 findings from sigcheck/codesign output
+Coverage target: 5 cited findings from sigcheck/codesign output — cite EVERY real finding the tool produced; if it produced fewer,
+  quote the raw summary line proving the count (Phase 0 §5). Never invent or split findings to reach the target.
 ```
 
 ### [OT2] DLL Hijacking / Library Injection Test
@@ -190,7 +214,8 @@ Analyze:
   - Missing DLLs that could be planted
   - Unsigned third-party DLLs
   - DLL side-loading opportunities
-Minimum citations: 4 findings
+Coverage target: 4 cited findings — cite EVERY real finding the tool produced; if it produced fewer,
+  quote the raw summary line proving the count (Phase 0 §5). Never invent or split findings to reach the target.
 ```
 
 ### [OT3] Dependency Vulnerability Scan
@@ -198,14 +223,15 @@ Minimum citations: 4 findings
 Action: Scan all dependencies for known CVEs
 Commands:
   # Trivy filesystem scan
-  trivy fs --security-checks vuln /path/to/project
+  trivy fs --scanners vuln,secret /path/to/project
   # OWASP Dependency-Check
   dependency-check --project "AppName" --scan /path/to/project
   # .NET
   dotnet list package --vulnerable --include-transitive
   # Electron
   npm audit --json
-  npx electron-builder --check-updates
+  npx @doyensec/electronegativity -i .     # Electron security misconfiguration scanner
+  osv-scanner scan source -r .             # multi-ecosystem CVE scan (no account)
   # Tauri
   cargo audit
 Analyze:
@@ -213,7 +239,8 @@ Analyze:
   - High CVEs (CVSS >= 7.0)
   - Outdated framework versions
   - Electron version vulnerabilities
-Minimum citations: 5 findings
+Coverage target: 5 cited findings — cite EVERY real finding the tool produced; if it produced fewer,
+  quote the raw summary line proving the count (Phase 0 §5). Never invent or split findings to reach the target.
 ```
 
 ### [OT4] Binary Security Analysis
@@ -233,7 +260,8 @@ Analyze:
   - SafeSEH enabled?
   - Debug symbols stripped?
   - Stack canaries present?
-Minimum citations: 4 findings
+Coverage target: 4 cited findings — cite EVERY real finding the tool produced; if it produced fewer,
+  quote the raw summary line proving the count (Phase 0 §5). Never invent or split findings to reach the target.
 ```
 
 ### [OT5] Sensitive Data Exposure Test
@@ -252,7 +280,8 @@ Analyze:
   - Sensitive data in registry (unencrypted)
   - Temp files with sensitive content
   - Log files with PII
-Minimum citations: 4 findings
+Coverage target: 4 cited findings — cite EVERY real finding the tool produced; if it produced fewer,
+  quote the raw summary line proving the count (Phase 0 §5). Never invent or split findings to reach the target.
 ```
 
 ### [OT6] Auto-Update Security
@@ -264,7 +293,8 @@ Check:
   - Signature verified before applying update?
   - Rollback mechanism exists?
   - Update server certificate pinned?
-Minimum citations: 3 findings
+Coverage target: 3 cited findings — cite EVERY real finding the tool produced; if it produced fewer,
+  quote the raw summary line proving the count (Phase 0 §5). Never invent or split findings to reach the target.
 ```
 
 ---
@@ -284,6 +314,8 @@ After the user approves specific findings for fixing (via Rule OT-E triage), for
 ---
 
 ## ⚠️ TOOL UNAVAILABILITY PROTOCOL
+
+> In mode B/C (no shell) every check below is `USER-RUN (pending)` — give exact commands, wait for real output.
 
 If a tool genuinely cannot be installed (e.g., restricted environment, OS mismatch):
 1. **Document exactly what you tried** and the error message

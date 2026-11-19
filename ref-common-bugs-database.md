@@ -1,6 +1,6 @@
 # 🐛 Desktop Application — Common Bugs Database
 
-> Reference database of 200+ common desktop application bugs categorized by type,
+> Reference database of 150+ common desktop application bugs categorized by type,
 > framework, and severity. Use this as a lookup during analysis phases.
 
 ---

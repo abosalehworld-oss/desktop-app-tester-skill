@@ -6,6 +6,14 @@
 
 ---
 
+## 🛟 PRE-FIX SAFETY (before the first edit)
+```
+✅ Confirm the user said "fix" for these exact finding IDs (Rule OT-E / Phase 10 report)
+✅ Check `git status`: commit or stash with the user's agreement, or create a backup — so every fix is reversible
+✅ Re-read each target file right before editing (line numbers drift)
+✅ After each sprint: build + tests (real runs) and an Integrity Self-Check; at the end: FINAL SELF-AUDIT (Phase 0 §15)
+```
+
 ## ⚠️ CRITICAL RULES FOR REMEDIATION
 
 ### Rule R1: NO SILENT FIXES

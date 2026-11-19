@@ -47,7 +47,11 @@
 | Date | [date] |
 | Auditor | Senior Desktop QA AI |
 
-> **OVERALL HEALTH SCORE: [X/100]**
+> **OVERALL HEALTH SCORE: [X/100]** — computed, never estimated:
+> `100 − 15×Critical − 7×High − 3×Medium − 1×Low` (floor 0; any open Critical caps at 49, any open High caps at 79).
+> Show the arithmetic line under the score. (Phase 0 §11) — computed, never estimated:
+> `100 − 15×Critical − 7×High − 3×Medium − 1×Low` (floor 0; any open Critical caps at 49, any open High caps at 79).
+> Show the arithmetic line under the score. (Phase 0 §11)
 
 | Severity | Count | Impact |
 |----------|-------|--------|
@@ -183,6 +187,7 @@ BEFORE releasing to users, verify:
 
 ```
 PHASE 10 GATE CHECKLIST:
+  □ 🔒 Integrity Self-Check printed (Phase 0 §14) — every claim evidenced in THIS phase
   □ [F1] Executive Summary produced
   □ [F2] Cross-Reference Matrix completed and validated
   □ [F3] Critical Path top issues listed
@@ -195,3 +200,26 @@ PHASE 10 GATE CHECKLIST:
   □ Health score recalculated if new findings
   □ Release recommendation finalized
 ```
+
+---
+
+## 🧾 FINAL SELF-AUDIT (MANDATORY — LAST STEP OF THIS PHASE)
+
+> Execute `00-agent-integrity-protocol.md` §15 now: re-read this report, build the claim ledger,
+> re-open the files behind every 🔴/🟠 finding and every security-relevant PASS, delete or relabel
+> anything without evidence from this session, recompute the score, and print:
+
+```
+🧾 FINAL SELF-AUDIT RESULT
+  Claims audited                 : [N]
+  Verified (code / tool / web)   : [a] / [b] / [c]
+  Inferred                       : [d]
+  Unverified (labelled)          : [e]
+  Removed or corrected           : [f]  ← each with reason
+  Files re-opened                : [list]
+  Not tested / pending the user  : [list]
+  Score after audit              : [X]/100 (arithmetic shown)
+  Recommendation after audit     : 🔴 / 🟡 / 🟢
+```
+
+⛔ Without this block the report is NOT complete — do not say "done", "ready" or "delivered".

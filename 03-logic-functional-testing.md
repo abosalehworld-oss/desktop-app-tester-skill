@@ -194,6 +194,7 @@ PHASE 3 GATE CHECKLIST:
   □ [L6] Concurrency and race conditions assessed
   □ [L7] Import/export functionality verified
   □ [L8] Print/report generation tested (if applicable)
-  □ Minimum 12 code citations provided
+  □ Coverage target: 12 code citations met — OR Shortfall Protocol applied (Phase 0 §5), never padded
   □ Files examined list produced
+  □ 🔒 Integrity Self-Check printed (Phase 0 §14) — every cited file:line read in THIS phase
 ```

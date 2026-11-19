@@ -2,6 +2,31 @@
 
 All notable changes to the Desktop App Tester Skill are documented here.
 
+## [1.3.0] - 2026-11-19
+
+### Added
+- **Phase 0: Agent Integrity Protocol** (`00-agent-integrity-protocol.md`) — self-contained, overrides all other rules:
+  10 Unbreakable Rules, Simple-Execution Mode for weaker models, real-date anchoring, execution-mode detection
+  with tool-name mapping (Gemini CLI / Antigravity / Claude Code / generic), evidence labels, Shortfall Protocol,
+  Rules of Engagement, prompt-injection defense, safe installation, secret redaction, severity calibration,
+  deterministic health score, Integrity Self-Check per phase, and a mandatory **Final Self-Audit**.
+- **`ref-freshness-registry.md`** — dated, sourced facts that expire (OWASP editions, WCAG 2.2, Core Web Vitals/INP,
+  store policies, signing rules, tool syntax) with a re-verification rule.
+- **BINDING CONTRACT** block at the top of `SKILL.md`; Rule 16 (Final Self-Audit) and Rule 17 (Authorization & Safe Execution).
+- **Rules of Engagement gate** at the start of Phase 13; Integrity Self-Check line in every phase gate.
+
+### Changed
+- `GEMINI.md` rewritten: mandatory reading order + the 10 rules inline (Arabic/English).
+- Citation minimums are now **coverage targets** with a Shortfall Protocol (no padding, no invented findings).
+- Rule OT-B: "max 2 MANUAL_CHECK" replaced by honest tool coverage (USER-RUN path for tool-less models).
+- Health score is now computed with a published formula; release verdict derived from open findings.
+- Workflow: Phase 13 (offensive) and Phase 14 (Sentry) ordered explicitly, Final Self-Audit added as the last step.
+
+### Fixed
+- Duplicate rule numbers in `SKILL.md`; workflow steps that skipped the offensive-testing phase.
+- Outdated tool syntax (Nuclei template paths / `-ut`, Trivy `--scanners`, testssl.sh repo, Safety 3.x) and outdated
+  platform facts (see `ref-freshness-registry.md`).
+
 ## [1.2.0] - 2026-09-08
 
 ### Added

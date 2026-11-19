@@ -107,7 +107,8 @@ FOR PYTHON (PyQt/PySide):
   sentry_sdk.init(dsn="YOUR_DSN", traces_sample_rate=1.0, environment="pre-delivery-test")
 
 FOR JAVA (JavaFX):
-  // Add to pom.xml: io.sentry:sentry:latest
+  // Add io.sentry:sentry to pom.xml/build.gradle with the CURRENT version from Maven Central / Sentry docs
+  // (there is no "latest" version string in Maven — never invent a version number)
   Sentry.init(options -> {
       options.setDsn("YOUR_DSN");
       options.setTracesSampleRate(1.0);
@@ -115,7 +116,7 @@ FOR JAVA (JavaFX):
   });
 
 FOR TAURI/RUST:
-  // Add to Cargo.toml: sentry = "latest"
+  // cargo add sentry      (adds the current version — "latest" is not valid in Cargo.toml)
   let _guard = sentry::init(("YOUR_DSN", sentry::ClientOptions {
       release: sentry::release_name!(),
       environment: Some("pre-delivery-test".into()),
@@ -181,7 +182,7 @@ Go through the ENTIRE app as a normal user:
 ### Step B3: Platform-Specific Testing
 ```
 📝 INSTRUCTIONS (based on target platforms):
-  - Windows: Test on Windows 10 AND Windows 11 if possible
+  - Windows: Test on Windows 11 (plus Windows 10 only if the user still supports it — it is past end of support)
   - macOS: Test on Intel AND Apple Silicon if possible
   - Linux: Test on at least one distro (Ubuntu recommended)
   - Check DPI scaling: Test at 100%, 125%, and 150%
@@ -256,7 +257,9 @@ If Sentry found issues:
 │   ✓ Fresh-Eyes re-analyzed (Rule 10)                       │
 │   ✓ Remediated with verified fixes (Phase 11)              │
 │   ✓ Distribution compliance verified (Phase 12)            │
+│   ✓ Offensive testing within Rules of Engagement (Ph. 13)  │
 │   ✓ Real-machine tested with Sentry (Phase 14)             │
+│   ✓ Final Self-Audit printed (Phase 0 §15)                 │
 │   ✓ All Critical/High issues resolved                      │
 │                                                             │
 │   Signed off at: [Date/Time]                                │
@@ -273,6 +276,7 @@ Monitor the dashboard daily for the first week after release.
 
 ```
 Phase 14 GATE CHECKLIST:
+  □ 🔒 Integrity Self-Check printed (Phase 0 §14) — every claim evidenced in THIS phase
   □ [A1-A4] Sentry setup and verified
   □ [B1] Normal usage tested
   □ [B2] Stress testing completed
@@ -281,6 +285,7 @@ Phase 14 GATE CHECKLIST:
   □ [C1] Issues classified
   □ [C2] Critical/High fixed (if any)
   □ [D] Final verdict produced
+  □ 🧾 FINAL SELF-AUDIT RESULT printed (Phase 0 §15)
 ```
 
 ### ⛔ FINAL STOP POINT

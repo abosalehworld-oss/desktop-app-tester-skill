@@ -184,7 +184,7 @@ dotnet list package --vulnerable
 Action: Verify all executables and DLLs are properly signed
 Commands:
   # Windows
-  sigcheck.exe -e -u -s "C:\path\to\app\directory"
+  sigcheck.exe -e -u -s "<app-install-directory>"
   # macOS
   codesign --verify --deep --strict /path/to/app.app
   spctl --assess --type exec -vv /path/to/app.app
